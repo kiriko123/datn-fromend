@@ -3,7 +3,11 @@ import { Table, Row, Col, Popconfirm, Button, message, notification, Divider } f
 import InputSearch from './InputSearch';
 // import { callDeleteUser, callFetchListUser } from '../../../services/api';
 import { CloudDownloadOutlined, CloudUploadOutlined, DeleteTwoTone, ExportOutlined, ImportOutlined, PlusOutlined, ReloadOutlined } from '@ant-design/icons';
-import {callFetchListUser} from "../../../services/api.js";
+import {callDeleteUser, callFetchListUser} from "../../../services/api.js";
+import UserViewDetail from "./UserViewDetail.jsx";
+
+import { FaEye } from "react-icons/fa";
+
 // https://stackblitz.com/run?file=demo.tsx
 const UserTable = () => {
     const [listUser, setListUser] = useState([]);
@@ -13,20 +17,28 @@ const UserTable = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const [filter, setFilter] = useState("");
+    const [sortQuery, setSortQuery] = useState("");
+
+    const [openViewDetail, setOpenViewDetail] = useState(false);
+    const [dataViewDetail, setDataViewDetail] = useState(null);
+
     // useEffect(() => {
     //     fetchUser();
     // }, []);
 
     useEffect(() => {
         fetchUsers();
-    }, [current, pageSize]);
+    }, [current, pageSize, filter, sortQuery]);
 
-    const fetchUsers = async (searchFilter) => {
+    const fetchUsers = async () => {
         setIsLoading(true)
         let query = `page=${current}&size=${pageSize}`;
-        if (searchFilter) {
-
-            query += `&${searchFilter}`
+        if (filter) {
+            query += `&${filter}`
+        }
+        if (sortQuery) {
+            query += `&${sortQuery}`;
         }
         const res = await callFetchListUser(query);
         if (res && res.data) {
@@ -60,18 +72,24 @@ const UserTable = () => {
             title: 'Action',
             render: (text, record, index) => {
                 return (
-                    <Popconfirm
-                        placement="leftTop"
-                        title={"Xác nhận xóa user"}
-                        description={"Bạn có chắc chắn muốn xóa user này ?"}
-                        onConfirm={() => handleDeleteUser(record.id)}
-                        okText="Xác nhận"
-                        cancelText="Hủy"
-                    >
+                    <div style={{ display: 'flex',alignItems: 'center', gap: 15 }}>
+                        <FaEye style={{ cursor: 'pointer' }} onClick={() => {
+                            setDataViewDetail(record);
+                            setOpenViewDetail(true);
+                        }} />
+                        <Popconfirm
+                            placement="leftTop"
+                            title={"Xác nhận xóa user"}
+                            description={"Bạn có chắc chắn muốn xóa user này ?"}
+                            onConfirm={() => handleDeleteUser(record.id)}
+                            okText="Xác nhận"
+                            cancelText="Hủy"
+                        >
                         <span style={{ cursor: "pointer" }}>
                             <DeleteTwoTone twoToneColor="#ff4d4f" />
                         </span>
-                    </Popconfirm>
+                        </Popconfirm>
+                    </div>
                 )
             }
         }
@@ -85,12 +103,17 @@ const UserTable = () => {
             setPageSize(pagination.pageSize)
             setCurrent(1);
         }
-        console.log('params', pagination, filters, sorter, extra);
+        if (sorter && sorter.field) {
+            const q = sorter.order === 'ascend' ? `sort=${sorter.field},asc` : `sort=${sorter.field},desc`;
+            setSortQuery(q);
+        }
+        //console.log('params', pagination, filters, sorter, extra);
     };
 
     const handleDeleteUser = async (userId) => {
         const res = await callDeleteUser(userId);
-        if (res && res.data) {
+        console.log(res);
+        if (res?.data?.statusCode && res.data.statusCode===204) {
             message.success('Xóa user thành công');
             fetchUsers();
         } else {
@@ -122,7 +145,10 @@ const UserTable = () => {
                         icon={<PlusOutlined />}
                         type="primary"
                     >Thêm mới</Button>
-                    <Button type='ghost' onClick={() => fetchUsers()}>
+                    <Button type='ghost' onClick={() => {
+                        setFilter("");
+                        setSortQuery("")
+                    }}>
                         <ReloadOutlined />
                     </Button>
 
@@ -133,14 +159,16 @@ const UserTable = () => {
     }
 
     const handleSearch = (query) => {
-        fetchUsers(query)
+        setFilter(query);
     }
 
     return (
         <>
             <Row gutter={[20, 20]}>
                 <Col span={24}>
-                    <InputSearch handleSearch={handleSearch} />
+                    <InputSearch handleSearch={handleSearch}
+                                 setFilter={setFilter}
+                    />
                 </Col>
                 <Col span={24}>
                     <Table
@@ -161,6 +189,12 @@ const UserTable = () => {
                         }
                     />
                 </Col>
+                <UserViewDetail
+                    openViewDetail={openViewDetail}
+                    setOpenViewDetail={setOpenViewDetail}
+                    dataViewDetail={dataViewDetail}
+                    setDataViewDetail={setDataViewDetail}
+                />
             </Row>
         </>
     )

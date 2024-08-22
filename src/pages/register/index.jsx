@@ -100,7 +100,6 @@ const RegisterForm = () => {
                     </Form.Item>
 
 
-
                     <Form.Item
                         wrapperCol={{
                             offset: 8,
@@ -112,7 +111,9 @@ const RegisterForm = () => {
                         </Button>
                     </Form.Item>
                 </Form>
+                <div><button onClick={() => navigate('/login')}>login</button></div>
             </div>
+
         )
 
     }

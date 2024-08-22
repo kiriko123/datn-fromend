@@ -44,12 +44,12 @@ const items = [
         ]
     },
     {
-        label: <Link to='/admin/book'>Manage Books</Link>,
+        label: <Link to='/admin/book'>Manage ....</Link>,
         key: 'book',
         icon: <ExceptionOutlined />
     },
     {
-        label: <Link to='/admin/order'>Manage Orders</Link>,
+        label: <Link to='/admin/order'>Manage ....</Link>,
         key: 'order',
         icon: <DollarCircleOutlined />
     },
@@ -125,6 +125,7 @@ const LayoutAdmin = () => {
                     defaultSelectedKeys={[activeMenu]}
                     mode="inline"
                     items={items}
+
                     onClick={(e) => setActiveMenu(e.key)}
                 />
             </Sider>
