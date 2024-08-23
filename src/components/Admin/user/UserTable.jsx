@@ -7,6 +7,7 @@ import {callDeleteUser, callFetchListUser} from "../../../services/api.js";
 import UserViewDetail from "./UserViewDetail.jsx";
 
 import { FaEye } from "react-icons/fa";
+import UserModalCreate from "./UserModalCreate.jsx";
 
 // https://stackblitz.com/run?file=demo.tsx
 const UserTable = () => {
@@ -22,6 +23,7 @@ const UserTable = () => {
 
     const [openViewDetail, setOpenViewDetail] = useState(false);
     const [dataViewDetail, setDataViewDetail] = useState(null);
+    const [openModalCreate, setOpenModalCreate] = useState(false);
 
     // useEffect(() => {
     //     fetchUser();
@@ -144,6 +146,7 @@ const UserTable = () => {
                     <Button
                         icon={<PlusOutlined />}
                         type="primary"
+                        onClick={() => setOpenModalCreate(true)}
                     >Thêm mới</Button>
                     <Button type='ghost' onClick={() => {
                         setFilter("");
@@ -184,7 +187,8 @@ const UserTable = () => {
                                 current: current,
                                 pageSize: pageSize,
                                 showSizeChanger: true,
-                                total: total
+                                total: total,
+                                showTotal: (total, range) => {return (<div>{range[0]}-{range[1]} trên {total} rows</div>)}
                             }
                         }
                     />
@@ -194,6 +198,11 @@ const UserTable = () => {
                     setOpenViewDetail={setOpenViewDetail}
                     dataViewDetail={dataViewDetail}
                     setDataViewDetail={setDataViewDetail}
+                />
+                <UserModalCreate
+                    openModalCreate={openModalCreate}
+                    setOpenModalCreate={setOpenModalCreate}
+                    fetchUser={fetchUsers}
                 />
             </Row>
         </>
