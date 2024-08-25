@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa";
 import InputSearch from './InputSearch';
 import UserViewDetail from "./UserViewDetail.jsx";
 import UserModalCreate from "./UserModalCreate.jsx";
+import UserImport from "./data/UserImport.jsx";
 
 const UserTable = () => {
     const [listUser, setListUser] = useState([]);
@@ -18,6 +19,8 @@ const UserTable = () => {
     const [openViewDetail, setOpenViewDetail] = useState(false);
     const [dataViewDetail, setDataViewDetail] = useState(null);
     const [openModalCreate, setOpenModalCreate] = useState(false);
+
+    const [openModalImport, setOpenModalImport] = useState(false);
 
     const [selectedColumns, setSelectedColumns] = useState({
         id: true,
@@ -142,7 +145,7 @@ const UserTable = () => {
                     <Button type="primary">Select Columns</Button>
                 </Dropdown>
                 <Button icon={<ExportOutlined />} type="primary">Export</Button>
-                <Button icon={<CloudUploadOutlined />} type="primary">Import</Button>
+                <Button icon={<CloudUploadOutlined />} type="primary" onClick={() => setOpenModalImport(true)}>Import</Button>
                 <Button icon={<PlusOutlined />} type="primary" onClick={() => setOpenModalCreate(true)}>Thêm mới</Button>
                 <Button type="ghost" onClick={() => {
                     setFilter("");
@@ -186,6 +189,11 @@ const UserTable = () => {
                 <UserModalCreate
                     openModalCreate={openModalCreate}
                     setOpenModalCreate={setOpenModalCreate}
+                    fetchUser={fetchUsers}
+                />
+                <UserImport
+                    openModalImport={openModalImport}
+                    setOpenModalImport={setOpenModalImport}
                     fetchUser={fetchUsers}
                 />
             </Row>

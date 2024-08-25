@@ -67,7 +67,7 @@ const Header = () => {
                         }}>☰</div>
                         <div className='page-header__logo'>
                             <span className='logo'>
-                                <FaReact className='rotate icon-react' /> WEB GI DO
+                                <FaReact className='rotate icon-react' /> WEB NAME ?
                                 <VscSearchFuzzy className='icon-search' />
                             </span>
                             <input
