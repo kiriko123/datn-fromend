@@ -92,5 +92,5 @@ Thêm giấy phép sử dụng nếu có, ví dụ:
 Dự án này được cấp phép dưới giấy phép MIT. Xem thêm trong LICENSE để biết chi tiết.
 
 ## Tác Giả
-Tên của bạn - GitHub
+Tên của bạn - khang
 
