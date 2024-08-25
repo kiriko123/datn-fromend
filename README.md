@@ -1,4 +1,4 @@
-React + Vite Project
+<h1>React + Vite Project</h1>
 Prerequisites
 Node.js v16.20.0
 Getting Started
