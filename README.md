@@ -16,7 +16,7 @@ Một câu mô tả ngắn gọn về dự án.
 
 ## Giới Thiệu
 
-Giới thiệu ngắn gọn về dự án của bạn, tại sao bạn thực hiện dự án này, và nó có thể làm gì. Ví dụ:
+Giới thiệu ngắn gọn về dự án của bạn, tại sao bạn thực hiện dự án này, và nó có thể làm gì. Ví dụ: demo readme
 
 
 ## Tính Năng
