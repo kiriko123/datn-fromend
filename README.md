@@ -48,5 +48,17 @@ npm install
 # hoặc nếu sử dụng yarn
 yarn install
 
+## Sử Dụng
+
+Hướng dẫn cách sử dụng dự án sau khi cài đặt:
+
+```bash
+# Chạy server
+npm start
+# hoặc nếu sử dụng yarn
+yarn start
+
+# Truy cập vào http://localhost:3000
+
 
 
