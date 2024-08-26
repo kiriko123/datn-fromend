@@ -82,7 +82,7 @@ const RegisterForm = () => {
                 </Form.Item>
             </Form>
             <div className="login-link">
-                <a onClick={() => navigate('/login')}>> Login</a>
+                <a onClick={() => navigate('/login')}> Login</a>
             </div>
         </div>
     );

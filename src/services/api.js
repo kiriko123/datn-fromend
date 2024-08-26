@@ -24,3 +24,6 @@ export const callCreateUser = ({name, email, password}) => {
 export const callBulkCreateUser = (data) => {
     return axios.post('/api/v1/user/bulk-create', data);
 }
+export const callUpdateUser = ({id, name, password}) => {
+    return axios.put(`/api/v1/user`, {id, name, password});
+}

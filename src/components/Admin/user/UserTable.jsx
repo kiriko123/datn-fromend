@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Row, Col, Popconfirm, Button, message, notification, Dropdown, Checkbox, Menu } from 'antd';
-import { ExportOutlined, CloudUploadOutlined, PlusOutlined, ReloadOutlined, DeleteTwoTone } from '@ant-design/icons';
+import {
+    ExportOutlined,
+    CloudUploadOutlined,
+    PlusOutlined,
+    ReloadOutlined,
+    DeleteTwoTone,
+    EditTwoTone
+} from '@ant-design/icons';
 import { callDeleteUser, callFetchListUser } from "../../../services/api.js";
 import { FaEye } from "react-icons/fa";
 import InputSearch from './InputSearch';
 import UserViewDetail from "./UserViewDetail.jsx";
 import UserModalCreate from "./UserModalCreate.jsx";
 import UserImport from "./data/UserImport.jsx";
+import * as XLSX from "xlsx";
+import UserModalUpdate from "./UserModalUpdate.jsx";
 
 const UserTable = () => {
     const [listUser, setListUser] = useState([]);
@@ -21,6 +30,9 @@ const UserTable = () => {
     const [openModalCreate, setOpenModalCreate] = useState(false);
 
     const [openModalImport, setOpenModalImport] = useState(false);
+
+    const [openModalUpdate, setOpenModalUpdate] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState(null);
 
     const [selectedColumns, setSelectedColumns] = useState({
         id: true,
@@ -107,6 +119,13 @@ const UserTable = () => {
                             <DeleteTwoTone twoToneColor="#ff4d4f" />
                         </span>
                     </Popconfirm>
+                    <EditTwoTone
+                        twoToneColor="#f57800" style={{cursor: "pointer"}}
+                        onClick={() => {
+                            setOpenModalUpdate(true);
+                            setDataUpdate(record);
+                        }}
+                    />
                 </div>
             ),
         },
@@ -137,6 +156,22 @@ const UserTable = () => {
         }
     };
 
+    const handleExportData = () => {
+        if (listUser.length > 0) {
+            // Tạo bản sao của listUser và điều chỉnh dữ liệu trước khi xuất
+            const exportData = listUser.map(user => ({
+                ...user,
+                role: user.role?.name || '', // Lấy giá trị từ role.name hoặc để trống nếu không có
+            }));
+
+            const worksheet = XLSX.utils.json_to_sheet(exportData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+            XLSX.writeFile(workbook, "ExportUser.csv");
+        }
+    }
+
+
     const renderHeader = () => (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span>Table List Users</span>
@@ -144,7 +179,7 @@ const UserTable = () => {
                 <Dropdown overlay={columnSelector} trigger={['click']}>
                     <Button type="primary">Select Columns</Button>
                 </Dropdown>
-                <Button icon={<ExportOutlined />} type="primary">Export</Button>
+                <Button icon={<ExportOutlined />} type="primary" onClick={() => handleExportData()}>Export</Button>
                 <Button icon={<CloudUploadOutlined />} type="primary" onClick={() => setOpenModalImport(true)}>Import</Button>
                 <Button icon={<PlusOutlined />} type="primary" onClick={() => setOpenModalCreate(true)}>Thêm mới</Button>
                 <Button type="ghost" onClick={() => {
@@ -194,6 +229,13 @@ const UserTable = () => {
                 <UserImport
                     openModalImport={openModalImport}
                     setOpenModalImport={setOpenModalImport}
+                    fetchUser={fetchUsers}
+                />
+                <UserModalUpdate
+                    openModalUpdate={openModalUpdate}
+                    setOpenModalUpdate={setOpenModalUpdate}
+                    dataUpdate={dataUpdate}
+                    setDataUpdate={setDataUpdate}
                     fetchUser={fetchUsers}
                 />
             </Row>
