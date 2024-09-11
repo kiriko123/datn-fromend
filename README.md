@@ -28,7 +28,6 @@ From-end của ứng dụng
 
 - **Node.js** phiên bản v16.20.0 hoặc cao hơn
 - **NPM** hoặc **Yarn**
-- **MySQL**
 
 ## Cài Đặt
 
