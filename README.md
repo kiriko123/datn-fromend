@@ -16,35 +16,28 @@ Một câu mô tả ngắn gọn về dự án.
 
 ## Giới Thiệu
 
-Giới thiệu ngắn gọn về dự án của bạn, tại sao bạn thực hiện dự án này, và nó có thể làm gì. Ví dụ: demo readme
+From-end của ứng dụng
 
 
 ## Tính Năng
 
-- Quản lý công việc hàng ngày
-- Đặt mục tiêu ngắn hạn và dài hạn
-- Đánh giá tiến độ công việc
-- Tạo báo cáo hiệu suất
+- Quảng lý user.
+- ......
 
 ## Yêu Cầu Hệ Thống
 
-- **Node.js** phiên bản 16 trở lên
+- **Node.js** phiên bản v16.20.0 hoặc cao hơn
 - **NPM** hoặc **Yarn**
-- **MongoDB** (nếu dự án sử dụng cơ sở dữ liệu)
+- **MySQL**
 
 ## Cài Đặt
 
-Hướng dẫn cách cài đặt dự án trên máy của người dùng:
-
 ```bash
 # Clone repository về máy
-git clone https://github.com/tên_user/tên_repo.git
-
-# Chuyển đến thư mục dự án
-cd tên_repo
+git clone https://github.com/kiriko123/datn-fromend.git
 
 # Cài đặt các dependencies
-npm install
+npm i
 # hoặc nếu sử dụng yarn
 yarn install
 
@@ -54,8 +47,8 @@ yarn install
 Hướng dẫn cách sử dụng dự án sau khi cài đặt:
 
 ```bash
-# Chạy server
-npm start
+# Chạy dự án
+npm run dev
 # hoặc nếu sử dụng yarn
 yarn start
 
