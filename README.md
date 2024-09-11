@@ -21,7 +21,7 @@ From-end của ứng dụng
 
 ## Tính Năng
 
-- Quảng lý user.
+- Quản lý user.
 - ......
 
 ## Yêu Cầu Hệ Thống
