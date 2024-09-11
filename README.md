@@ -47,6 +47,8 @@ yarn install
 Hướng dẫn cách sử dụng dự án sau khi cài đặt:
 
 ```bash
+# Chạy dự án back-end trên cổng localhost:8080
+link dự án (https://github.com/kiriko123/datn-backend.git)
 # Chạy dự án
 npm run dev
 # hoặc nếu sử dụng yarn
