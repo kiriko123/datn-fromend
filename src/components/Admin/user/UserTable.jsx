@@ -16,6 +16,7 @@ import UserModalCreate from "./UserModalCreate.jsx";
 import UserImport from "./data/UserImport.jsx";
 import * as XLSX from "xlsx";
 import UserModalUpdate from "./UserModalUpdate.jsx";
+import { CgColorPicker } from "react-icons/cg";
 
 const UserTable = () => {
     const [listUser, setListUser] = useState([]);
@@ -34,13 +35,7 @@ const UserTable = () => {
     const [openModalUpdate, setOpenModalUpdate] = useState(false);
     const [dataUpdate, setDataUpdate] = useState(null);
 
-    const [selectedColumns, setSelectedColumns] = useState({
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        action: true,
-    });
+
 
     useEffect(() => {
         fetchUsers();
@@ -59,8 +54,26 @@ const UserTable = () => {
         setIsLoading(false);
     };
 
+    const [selectedColumns, setSelectedColumns] = useState({
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        action: true,
+    });
+
+    const [dropdownVisible, setDropdownVisible] = useState(false); // Trạng thái hiển thị menu
+
+    const handleMenuClick = () => {
+        // Không làm gì ở đây để tránh menu đóng khi chọn
+    };
+
+    const handleVisibleChange = (flag) => {
+        setDropdownVisible(flag); // Điều khiển trạng thái mở/đóng của menu
+    };
+
     const columnSelector = (
-        <Menu>
+        <Menu onClick={handleMenuClick}>
             {Object.keys(selectedColumns).map((key) => (
                 <Menu.Item key={key}>
                     <Checkbox
@@ -173,11 +186,16 @@ const UserTable = () => {
 
 
     const renderHeader = () => (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span>Table List Users</span>
-            <span style={{ display: 'flex', gap: 15 }}>
-                <Dropdown overlay={columnSelector} trigger={['click']}>
-                    <Button type="primary">Select Columns</Button>
+        <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 15 }}>
+            <span>Table Users</span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 15 }}>
+                <Dropdown
+                    overlay={columnSelector}
+                    trigger={['click']}
+                    visible={dropdownVisible} // Điều khiển trạng thái hiển thị của dropdown
+                    onVisibleChange={handleVisibleChange} // Xử lý khi nhấn ra ngoài thì đóng menu
+                >
+                    <Button icon={<EditTwoTone/>} type="primary">Select Columns</Button>
                 </Dropdown>
                 <Button icon={<ExportOutlined />} type="primary" onClick={() => handleExportData()}>Export</Button>
                 <Button icon={<CloudUploadOutlined />} type="primary" onClick={() => setOpenModalImport(true)}>Import</Button>
@@ -188,9 +206,10 @@ const UserTable = () => {
                 }}>
                     <ReloadOutlined />
                 </Button>
-            </span>
+            </div>
         </div>
     );
+
 
     return (
         <>

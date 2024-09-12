@@ -103,6 +103,29 @@ header
     gap: 30px;
     align-items: center;
 }
+.header .mobileHidden nav div span{
+    display: flex;
+
+    align-items: center;
+    gap: 4px;
+}
+.mobileVisible-nav{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.mobileVisible-nav .mobileVisible-nav-div:hover {
+    background: #477e4f;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+.mobileVisible-nav .mobileVisible-nav-div span:hover {
+    color: #ebebeb;
+}
+.mobileVisible-nav div span{
+
+}
 span{
     cursor: pointer;
     font-size: 16px;

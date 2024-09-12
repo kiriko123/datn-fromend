@@ -10,6 +10,15 @@ import {Link, useNavigate} from "react-router-dom";
 import {callLogout} from "../../services/api.js";
 import {doLogoutAction} from "../../redux/account/accountSlice.js";
 import './index.css'
+import { FaHome } from "react-icons/fa";
+import { BiSolidCategoryAlt } from "react-icons/bi";
+import { FaCartShopping } from "react-icons/fa6";
+import { MdContactSupport } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
+import { RiLoginCircleFill } from "react-icons/ri";
+import { RiAdminFill } from "react-icons/ri";
+import { FaUserEdit } from "react-icons/fa";
+import { RiLogoutBoxFill } from "react-icons/ri";
 import {FiShoppingCart} from "react-icons/fi";
 
 
@@ -36,7 +45,12 @@ const Header = () => {
 
     const items = [
         {
-            label: <label style={{cursor: 'pointer'}}>Edit</label>,
+            label: <label style={{cursor: 'pointer'}}>
+                <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                    <FaUserEdit />
+                    <span>Edit profile</span>
+                </div>
+            </label>,
             key: 'account',
         },
         ...(role === 'ROLE_ADMIN' ? [{
@@ -44,7 +58,10 @@ const Header = () => {
                 style={{cursor: 'pointer'}}
                 onClick={() => navigate('/admin')}
             >
-                Admin page
+                <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                    <RiAdminFill />
+                    <span>Admin page</span>
+                </div>
             </label>,
             key: 'admin',
         }] : []),
@@ -52,7 +69,12 @@ const Header = () => {
             label: <label
                 style={{cursor: 'pointer'}}
                 onClick={() => handleLogout()}
-            >Log out</label>,
+            >
+                <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                    <RiLogoutBoxFill />
+                    <span>Logout</span>
+                </div>
+            </label>,
             key: 'logout',
         },
     ];
@@ -77,16 +99,16 @@ const Header = () => {
                     <div className="mobileHidden">
                         <nav>
                             <div>
-                                <span onClick={() => navigate('/')}> Home</span>
+                                <span onClick={() => navigate('/')}> <FaHome /> <p>Home</p></span>
                             </div>
                             <div>
-                                <span onClick={() => navigate('/1')}> Product</span>
+                                <span onClick={() => navigate('/1')}> <BiSolidCategoryAlt /> <p>Product</p></span>
                             </div>
                             <div>
-                                <span onClick={() => navigate('/2')}> Cart</span>
+                                <span onClick={() => navigate('/2')}> <FaCartShopping /> <p>Cart</p></span>
                             </div>
                             <div>
-                                <span onClick={() => navigate('/3')}> About</span>
+                                <span onClick={() => navigate('/3')}> <MdContactSupport /> <p>About</p></span>
                             </div>
                             {/*<div>*/}
                             {/*<Badge*/}
@@ -98,13 +120,17 @@ const Header = () => {
                             {/*</div>*/}
                             <div>
                                 {!isAuthenticated || user === null ?
-                                    <span onClick={() => navigate('/auth')}> Login/Register</span>
+                                    <span onClick={() => navigate('/auth')}><RiLoginCircleFill /> <p>Login/Register</p></span>
                                     :
                                     <Dropdown menu={{items}} trigger={['click']}>
                                         <a onClick={(e) => e.preventDefault()}>
                                             <Space>
-                                                <span style={{ fontSize: '16px'}}>
-                                                    Welcome: <span style={{textTransform: 'uppercase'}}> {user?.name} </span>
+                                                <span style={{fontSize: '15px', display: 'flex', alignItems: 'center'}}>
+                                                    <FaUserCircle />
+                                                    <span>
+                                                        Welcome: <span
+                                                        style={{textTransform: 'uppercase'}}> {user?.name} </span>
+                                                    </span>
                                                 </span>
                                                 <DownOutlined/>
                                             </Space>
@@ -120,22 +146,22 @@ const Header = () => {
                         </Button>
                         <Drawer
                             placement="right"
-                            closable={false}
+                            closable={true}
                             onClose={onClose}
                             visible={visible}
                         >
-                            <nav>
-                                <div>
-                                    <span onClick={() => navigate('/')}> Home</span>
+                            <nav className="mobileVisible-nav">
+                                <div className="mobileVisible-nav-div" onClick={() => navigate('/')}>
+                                    <span><FaHome /> Home</span>
                                 </div>
-                                <div>
-                                    <span onClick={() => navigate('/1')}> Product</span>
+                                <div className="mobileVisible-nav-div" onClick={() => navigate('/1')}>
+                                    <span> <BiSolidCategoryAlt /> Product</span>
                                 </div>
-                                <div>
-                                    <span onClick={() => navigate('/2')}> Cart</span>
+                                <div className="mobileVisible-nav-div" onClick={() => navigate('/2')}>
+                                    <span> <FaCartShopping /> Cart</span>
                                 </div>
-                                <div>
-                                    <span onClick={() => navigate('/3')}> About</span>
+                                <div className="mobileVisible-nav-div" onClick={() => navigate('/3')}>
+                                    <span> <MdContactSupport /> About</span>
                                 </div>
                                 {/*<div>*/}
                                 {/*<Badge*/}
@@ -147,12 +173,22 @@ const Header = () => {
                                 {/*</div>*/}
                                 <div>
                                     {!isAuthenticated || user === null ?
-                                        <span onClick={() => navigate('/login')}> Account</span>
+                                        <span onClick={() => navigate('/auth')}> <RiLoginCircleFill /> Login/Register</span>
                                         :
                                         <Dropdown menu={{items}} trigger={['click']}>
-                                            <a onClick={(e) => e.preventDefault()}>
+                                            <a style={{textDecoration: 'none', color: '#1c1f23'}} onClick={(e) => e.preventDefault()}>
                                                 <Space>
-                                                    Welcome {user?.name}
+                                                    <span style={{
+                                                        fontSize: '15px',
+                                                        display: 'flex',
+                                                        alignItems: 'center'
+                                                    }}>
+                                                    <FaUserCircle/>
+                                                    <span>
+                                                        Welcome: <span
+                                                        style={{textTransform: 'uppercase'}}> {user?.name} </span>
+                                                    </span>
+                                                </span>
                                                     <DownOutlined/>
                                                 </Space>
                                             </a>

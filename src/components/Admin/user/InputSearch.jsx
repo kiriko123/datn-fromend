@@ -6,10 +6,14 @@ const InputSearch = (props) => {
     const [form] = Form.useForm();
 
     const formStyle = {
-        maxWidth: 'none',
-        background: token.colorFillAlter,
-        borderRadius: token.borderRadiusLG,
-        padding: 24,
+        maxWidth: '100%',
+        padding: '20px',
+        background: `#fff`, // Màu cam nhạt nổi bật
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        color: '#222', // Chữ đậm với màu xám tối
+        fontWeight: 'bold', // Chữ đậm
+        marginBottom: '24px',
+        borderRadius: '20px',
     };
 
     const onFinish = (values) => {
@@ -60,7 +64,7 @@ const InputSearch = (props) => {
                         name={`fullName`}
                         label={`Name`}
                     >
-                        <Input placeholder="placeholder" />
+                        <Input placeholder="Please input name!" />
                     </Form.Item>
                 </Col>
                 <Col span={8}>
@@ -69,19 +73,19 @@ const InputSearch = (props) => {
                         name={`email`}
                         label={`Email`}
                     >
-                        <Input placeholder="placeholder" />
+                        <Input placeholder="Please input email!" />
                     </Form.Item>
                 </Col>
 
-                <Col span={8}>
-                    <Form.Item
-                        labelCol={{ span: 24 }} //whole column
-                        name={`phone`}
-                        label={`Add thêm`}
-                    >
-                        <Input placeholder="placeholder" />
-                    </Form.Item>
-                </Col>
+                {/*<Col span={8}>*/}
+                {/*    <Form.Item*/}
+                {/*        labelCol={{ span: 24 }} //whole column*/}
+                {/*        name={`phone`}*/}
+                {/*        label={`Add thêm`}*/}
+                {/*    >*/}
+                {/*        <Input placeholder="placeholder" />*/}
+                {/*    </Form.Item>*/}
+                {/*</Col>*/}
             </Row>
             <Row>
                 <Col span={24} style={{ textAlign: 'right' }}>
