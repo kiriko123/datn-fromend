@@ -1,5 +1,5 @@
 import './index.css';
-import {BackTop} from "antd";
+import {FloatButton} from "antd";
 
 const Footer = () => {
     return (
@@ -17,9 +17,9 @@ const Footer = () => {
                     <li><a href="https://www.instagram.com/"><i className="fab fa-instagram"></i></a></li>
                 </ul>
                 <div className="copyright">Copyright &copy; 2020 好不好</div>
-                <BackTop>
+                <FloatButton.BackTop>
                     <div className="goTop"><i className="fas fa-arrow-circle-up"></i></div>
-                </BackTop>
+                </FloatButton.BackTop>
             </div>
         </div>
     );

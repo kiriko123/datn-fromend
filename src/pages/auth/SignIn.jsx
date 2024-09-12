@@ -93,7 +93,7 @@ export default function SignIn() {
               required: true,
               message: "Please input your password.",
             },
-            { min: 5, message: "Password must be minimum 6 characters." },
+            { min: 5, message: "Password must be minimum 5 characters." },
           ]}
         >
           <Input.Password placeholder="Password" size="large" />

@@ -184,7 +184,7 @@ export default function SignUp() {
                   required: true,
                   message: "Please input your password.",
                 },
-                { min: 6, message: "Password must be minimum 6 characters." },
+                { min: 6, message: "Password must be minimum 5 characters." },
               ]}
             >
               <Input.Password placeholder="Password" size="large" />
