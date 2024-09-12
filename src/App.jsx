@@ -16,6 +16,7 @@ import ProtectedRoute from "./components/ProtectedRoute/index.jsx";
 import AdminPage from "./pages/admin/index.jsx";
 import ManageUserPage from "./pages/admin/user/index.jsx";
 import Auth from "./pages/auth/index.jsx";
+import Slider from "./pages/slider/slider.jsx";
 
 
 const Layout = () => {
@@ -72,7 +73,7 @@ export default function App() {
         },
         {
             path:"/register",
-            element: <RegisterForm/>,
+            element: <Slider/>,
         },
         {
             path: "/admin",

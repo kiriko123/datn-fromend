@@ -1,7 +1,10 @@
+import Slider from "../../pages/slider/slider.jsx";
+
 const Home = () => {
     return(
         <>
-            This is home page.
+            <Slider/>
+
         </>
     )
 }
