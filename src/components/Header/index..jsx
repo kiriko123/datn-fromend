@@ -98,7 +98,7 @@ const Header = () => {
                             {/*</div>*/}
                             <div>
                                 {!isAuthenticated || user === null ?
-                                    <span onClick={() => navigate('/auth')}> Account</span>
+                                    <span onClick={() => navigate('/auth')}> Login/Register</span>
                                     :
                                     <Dropdown menu={{items}} trigger={['click']}>
                                         <a onClick={(e) => e.preventDefault()}>
