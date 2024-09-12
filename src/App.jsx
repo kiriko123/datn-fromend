@@ -15,6 +15,7 @@ import LayoutAdmin from "./components/Admin/LayoutAdmin.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/index.jsx";
 import AdminPage from "./pages/admin/index.jsx";
 import ManageUserPage from "./pages/admin/user/index.jsx";
+import Auth from "./pages/auth/index.jsx";
 
 
 const Layout = () => {
@@ -34,7 +35,7 @@ export default function App() {
     const isLoading = useSelector(state => state.account.isLoading)
 
     const getAccount = async() =>{
-        if (window.location.pathname === "/login"
+        if (window.location.pathname === "/auth"
             || window.location.pathname === "/register"
 
         ) {
@@ -66,8 +67,8 @@ export default function App() {
 
         },
         {
-            path:"/login",
-            element: <LoginPage/>,
+            path:"/auth",
+            element: <Auth/>,
         },
         {
             path:"/register",
@@ -104,7 +105,7 @@ export default function App() {
         <>
             {
                 !isLoading
-                || window.location.pathname === '/login'
+                || window.location.pathname === '/auth'
                 || window.location.pathname === '/register'
                 || window.location.pathname === '/'
                     ? <RouterProvider router={router}/>

@@ -64,7 +64,7 @@ tên_repo/
 │   ├── pages/        # Các trang chính
 │   ├── services/     # Các dịch vụ kết nối API
 │   ├── App.js        # Tệp khởi đầu của ứng dụng
-│   └── index.js      # Điểm vào của ứng dụng
+│   └── index.jsx      # Điểm vào của ứng dụng
 ├── public/           # Các tệp tĩnh
 ├── package.json      # Thông tin về dependencies và scripts
 └── README.md         # Tệp này

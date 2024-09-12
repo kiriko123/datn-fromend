@@ -30,7 +30,7 @@ const Header = () => {
         if (res && res.statusCode === 200) {
             dispatch(doLogoutAction());
             message.success('Đăng xuất thành công');
-            navigate('/login');
+            navigate('/auth');
         }
     }
 
@@ -98,7 +98,7 @@ const Header = () => {
                             {/*</div>*/}
                             <div>
                                 {!isAuthenticated || user === null ?
-                                    <span onClick={() => navigate('/login')}> Account</span>
+                                    <span onClick={() => navigate('/auth')}> Account</span>
                                     :
                                     <Dropdown menu={{items}} trigger={['click']}>
                                         <a onClick={(e) => e.preventDefault()}>
