@@ -19,7 +19,7 @@ const Loading = () => {
     return (
         <div style={style}>
             <PacmanLoader color="#000000"/>
-            <a href="/login" style={linkStyle}>
+            <a href="/auth" style={linkStyle}>
                 Login nào!
             </a>
         </div>

@@ -1,7 +1,7 @@
 import axios from '../utils/axios-customize.js'
 
-export const callRegister = ({name, email, password, confirmPassword}) => {
-    return axios.post('/api/v1/auth/register', {name, email, password, confirmPassword});
+export const callRegister = ({name, email, password, confirmPassword, firstName}) => {
+    return axios.post('/api/v1/auth/register', {name, email, password, confirmPassword, firstName});
 }
 export const callLogin = ({ username, password}) => {
     return axios.post('/api/v1/auth/login', {username, password});

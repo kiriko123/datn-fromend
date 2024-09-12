@@ -20,10 +20,10 @@ export default function SignUp() {
 
   const onFinish = async (values) => {
     console.log('Success:', values);
-    const {name, email, password, confirmPassword} = values;
+    const {name, email, password, confirmPassword, firstName} = values;
     setLoading(true);
 
-    const res = await callRegister({name, email, password, confirmPassword});
+    const res = await callRegister({name, email, password, confirmPassword, firstName});
     setLoading(false);
 
     if (res?.data) {
@@ -110,7 +110,7 @@ export default function SignUp() {
           <Col className="gutter-row" xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item
               hasFeedback
-              name="name"
+              name="firstName"
               label="First name"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
@@ -131,7 +131,7 @@ export default function SignUp() {
           <Col className="gutter-row" xs={{ span: 24 }} md={{ span: 12 }}>
             <Form.Item
               hasFeedback
-              name="lastName"
+              name="name"
               label="Last name"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}

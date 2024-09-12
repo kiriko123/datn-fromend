@@ -36,7 +36,7 @@ const Header = () => {
 
     const items = [
         {
-            label: <label style={{cursor: 'pointer'}}>Quản lý tài khoản</label>,
+            label: <label style={{cursor: 'pointer'}}>Edit</label>,
             key: 'account',
         },
         ...(role === 'ROLE_ADMIN' ? [{
@@ -44,7 +44,7 @@ const Header = () => {
                 style={{cursor: 'pointer'}}
                 onClick={() => navigate('/admin')}
             >
-                Trang quản lý Admin
+                Admin page
             </label>,
             key: 'admin',
         }] : []),
@@ -52,7 +52,7 @@ const Header = () => {
             label: <label
                 style={{cursor: 'pointer'}}
                 onClick={() => handleLogout()}
-            >Đăng xuất</label>,
+            >Log out</label>,
             key: 'logout',
         },
     ];
